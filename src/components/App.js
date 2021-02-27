@@ -28,8 +28,15 @@ function App() {
     setToys(toys.filter((toy) => toy.id !== donatedToy.id))
   }
 
-  function likeToy(toy){
-    setToys([...toys, toy])
+  function likeToy(likedToy){
+    const updateToy = toys.map((toy) => {
+     if (toy.id === likedToy.id) {
+       return likedToy
+     } else {
+       return toy
+     }
+    })
+    setToys(updateToy)
   }
 
   return (

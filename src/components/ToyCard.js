@@ -16,7 +16,7 @@ function ToyCard({ toy, donateToy, likeToy }) {
     fetch(`${url}/${toy.id}`, {
       method: "PATCH",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({likes: toy.likes++})
+      body: JSON.stringify({likes: toy.likes + 1})
     })
       .then(r => r.json())
       .then(likeToy)

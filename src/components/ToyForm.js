@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ToyForm({ url, addToy }) {
+function ToyForm({ url, addToy, toys, setToys }) {
   const [formData, setFormData] = useState({
     name: "",
     image: ""

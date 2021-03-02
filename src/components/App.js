@@ -39,18 +39,26 @@ function App() {
     setToys(updateToy)
   }
 
+  function handleDelete(deleteToy){
+    fetch(`${url}/${deleteToy.id}`, {
+      method: "DELETE"
+    })
+    .then(setToys(toys.filter((toy) => toy.id !== deleteToy.id))) 
+  }
+
   return (
     <>
       <Header />
-      {showForm ? <ToyForm url={url} /> : null}
+      {showForm ? <ToyForm url={url} addToy={addToy} /> : null}
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
       <ToyContainer 
       toys={toys} 
-      addToy={addToy}
       donateToy={donateToy}
-      likeToy={likeToy} />
+      likeToy={likeToy} 
+      handleDelete={handleDelete}
+      />
     </>
   );
 }

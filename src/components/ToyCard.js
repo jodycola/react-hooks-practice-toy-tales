@@ -2,15 +2,9 @@ import React from "react";
 
 const url = 'http://localhost:3001/toys'
 
-function ToyCard({ toy, donateToy, likeToy }) {
+function ToyCard({ toy, donateToy, likeToy, handleDelete }) {
 
-  function handleDonate(){
-    fetch(`${url}/${toy.id}`, {
-      method: "DELETE",
-    })
-      .then(r => r.json())
-      .then(donateToy)
-  }
+
 
   function handleLike(){
     fetch(`${url}/${toy.id}`, {
@@ -21,6 +15,7 @@ function ToyCard({ toy, donateToy, likeToy }) {
       .then(r => r.json())
       .then(likeToy)
   }
+
   return (
     <div className="card">
       <h2>{toy.name}</h2>
@@ -31,7 +26,7 @@ function ToyCard({ toy, donateToy, likeToy }) {
       />
       <p>{toy.likes} Likes </p>
       <button className="like-btn" onClick={handleLike}>Like {"<3"}</button>
-      <button className="del-btn" onClick={handleDonate}>Donate to GoodWill</button>
+      <button className="del-btn" onClick={() => handleDelete(toy)}>Donate to GoodWill</button>
     </div>
   );
 }
